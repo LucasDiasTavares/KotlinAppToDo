@@ -19,7 +19,7 @@ class CreateDB(private val context: Context) : SQLiteOpenHelper(context, DB_Name
         imcT.append(" CREATE TABLE tasks (    	 ")
         imcT.append("       id                  INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL	,")
         imcT.append("       title               STRING                                      ,")
-        imcT.append("       completed 		    BOOLEAN                                    );")
+        imcT.append("       completed 		    INTEGER DEFAULT 0                          );")
 
         db?.execSQL(imcT.toString())
         Log.d("TAG_CREATE_DB", imcT.toString())

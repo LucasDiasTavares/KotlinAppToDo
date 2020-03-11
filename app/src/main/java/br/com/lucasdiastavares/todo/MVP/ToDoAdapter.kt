@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.row_task.view.*
 class ToDoAdapter(
         private var context: Context,
         private var list: ArrayList<ToDoObject>,
-        var presenter: InterfaceToDo.PresenterImpl,
         private var hackListener : HackListener): RecyclerView.Adapter<ToDoAdapter.MyViewHolder>() {
 
 
