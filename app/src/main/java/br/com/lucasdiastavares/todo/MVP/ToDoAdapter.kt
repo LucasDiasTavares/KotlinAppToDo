@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import br.com.lucasdiastavares.todo.R
 import br.com.lucasdiastavares.todo.Utils.HackListener
 import br.com.lucasdiastavares.todo.data.ToDoObject
+import kotlinx.android.synthetic.main.row_task.view.*
 
 class ToDoAdapter(
         private var context: Context,
@@ -25,16 +26,17 @@ class ToDoAdapter(
         return list.size
     }
 
-    override fun onBindViewHolder(p0: MyViewHolder, p1: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onBindViewHolder(viewHolder: MyViewHolder, position: Int) {
+        viewHolder.itemView.txt_task.text = list[position].title
     }
 
     inner class MyViewHolder(itemViewHolder: View) : RecyclerView.ViewHolder(itemViewHolder), View.OnClickListener {
         init {
-            //itemViewHolder.btn_delete?.setOnClickListener(this)
+            itemViewHolder.btn_edit.setOnClickListener(this)
+            itemViewHolder.btn_delete.setOnClickListener(this)
         }
         override fun onClick(view: View) {
-            //hackListener.onClickHack(view, adapterPosition)
+            hackListener.onClickHack(view, adapterPosition)
         }
     }
 

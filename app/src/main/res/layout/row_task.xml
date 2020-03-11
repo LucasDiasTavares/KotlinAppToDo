@@ -7,7 +7,7 @@
     android:background="@color/colorLight_Gray">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/card_historico_tabela"
+        android:id="@+id/card_row_task"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorLight_Gray"
@@ -24,44 +24,40 @@
             android:layout_margin="5dp">
 
             <android.support.v7.widget.AppCompatTextView
-                android:id="@+id/txt_historico_peso"
-                android:layout_width="0dp"
+                android:id="@+id/txt_task"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:textColor="@color/colorBlack"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:text="afafasf"
+                android:text=""
                 app:layout_constraintEnd_toStartOf="@id/btn_edit"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_edit"
-                android:layout_width="100dp"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorWhite"
-                android:textSize="15sp"
-                android:text="deletar"
-                android:backgroundTint="@color/colorDarkRed"
+                android:textSize="13sp"
+                android:text="editar"
+                android:backgroundTint="@color/color_blue_stepper"
                 android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="@+id/txt_historico_peso"
-                app:layout_constraintBottom_toBottomOf="@id/txt_historico_peso"
-                app:layout_constraintStart_toEndOf="@id/txt_historico_peso"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txt_task"
                 app:layout_constraintEnd_toStartOf="@id/btn_edit" />
 
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_delete"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorWhite"
-                android:textSize="15sp"
-                android:text="deletar"
-                android:backgroundTint="@color/colorDarkRed"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="@+id/txt_historico_peso"
-                app:layout_constraintBottom_toBottomOf="@id/txt_historico_peso"
-                app:layout_constraintStart_toEndOf="@id/txt_historico_peso"
+                android:layout_width="35dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_trash"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_edit"
                 app:layout_constraintEnd_toEndOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
