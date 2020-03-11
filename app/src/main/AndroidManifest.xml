@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ToDoActivity" />
+        <activity android:name=".MVP.ToDoActivity" />
     </application>
 
 </manifest>
