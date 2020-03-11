@@ -17,7 +17,7 @@ interface InterfaceToDo {
     }
 
     interface PresenterImpl {
-        fun save(title: String)
+        fun save(givenTitle: String)
         fun showTaskList(): ArrayList<ToDoObject>
         fun showLastTaskAdded() :ToDoObject
         fun delete(id: Int)

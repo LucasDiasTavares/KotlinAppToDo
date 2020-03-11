@@ -7,25 +7,33 @@ class ToDoPresenter(private val context: Context,
                     private val _view: InterfaceToDo.ViewImpl): InterfaceToDo.PresenterImpl {
 
     private var model: InterfaceToDo.ModelImpl = ToDoModel(context)
+    private var taskList : ArrayList<ToDoObject> = ArrayList()
 
-    override fun save(title: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun save(givenTitle: String) {
+        val obj = ToDoObject(title = givenTitle, completed = 0 )
+        model.createTask(obj)
+        taskList.add(showLastTaskAdded())
+        _view.notifyAddTask(taskList.lastIndex)
     }
 
     override fun showTaskList(): ArrayList<ToDoObject> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        taskList.addAll(model.getTaskList())
+        return taskList
     }
 
     override fun showLastTaskAdded(): ToDoObject {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return model.getLastTask()
     }
 
     override fun delete(id: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return model.deleteTask(id)
     }
 
     override fun removeTask(posicaoAdapter: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val id = taskList[posicaoAdapter].id
+        model.deleteTask(id!!)
+        taskList.removeAt(posicaoAdapter)
+        _view.notifyRemoveTask(posicaoAdapter)
     }
 
 }
