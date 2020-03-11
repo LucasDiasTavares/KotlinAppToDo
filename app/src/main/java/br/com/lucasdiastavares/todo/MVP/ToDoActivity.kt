@@ -14,24 +14,28 @@ import kotlinx.android.synthetic.main.toolbar.*
 class ToDoActivity : AppCompatActivity(), InterfaceToDo.ViewImpl, HackListener {
 
     private var adapterToDo : ToDoAdapter?=null
+    private var presenterToDo: ToDoPresenter?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_to_do)
+        presenterToDo = ToDoPresenter(this, this)
         initcomponents()
+        presenterToDo?.showTaskList()
     }
 
     fun initcomponents(){
         toolbar.title = "To Do"
         btn_main_salvar.setOnClickListener {
-
+            val edtTitle = main_edt.text.toString()
+            presenterToDo?.save(edtTitle)
         }
 
         recyclerView.layoutManager = LinearLayoutManager(
                 this, LinearLayout.VERTICAL, false)
 
-//        adapterToDo = ToDoAdapter(this, presenter?.showTaskList()?:ArrayList(), hackListener = this)
-//        recyclerView.adapter = adapter
+        adapterToDo = ToDoAdapter(this, presenterToDo?.showTaskList()?:ArrayList(), presenter = presenterToDo!! ,hackListener = this)
+        recyclerView.adapter = adapterToDo
     }
 
     override fun notifyAddTask(position: Int) {
@@ -45,7 +49,7 @@ class ToDoActivity : AppCompatActivity(), InterfaceToDo.ViewImpl, HackListener {
     override fun onClickHack(viewClicked: View, position: Int) {
         when(viewClicked.id){
             R.id.btn_delete -> {
-                //presenter.removeTask(position)
+                presenterToDo?.removeTask(position)
                 Toast.makeText(this, "Deletado", Toast.LENGTH_SHORT).show()
             }
         }

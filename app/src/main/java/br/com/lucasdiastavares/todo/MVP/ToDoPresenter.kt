@@ -10,7 +10,7 @@ class ToDoPresenter(private val context: Context,
     private var taskList : ArrayList<ToDoObject> = ArrayList()
 
     override fun save(givenTitle: String) {
-        val obj = ToDoObject(title = givenTitle, completed = 0 )
+        val obj = ToDoObject(title = givenTitle, completed = 0)
         model.createTask(obj)
         taskList.add(showLastTaskAdded())
         _view.notifyAddTask(taskList.lastIndex)
