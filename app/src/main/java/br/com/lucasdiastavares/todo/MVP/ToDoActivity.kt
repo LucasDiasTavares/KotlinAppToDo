@@ -3,15 +3,12 @@ package br.com.lucasdiastavares.todo.MVP
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.text.Html
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import br.com.lucasdiastavares.todo.R
 import br.com.lucasdiastavares.todo.Utils.HackListener
 import kotlinx.android.synthetic.main.activity_to_do.*
-import kotlinx.android.synthetic.main.row_task.*
-import kotlinx.android.synthetic.main.row_task.view.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class ToDoActivity : AppCompatActivity(), InterfaceToDo.ViewImpl, HackListener {
@@ -55,7 +52,6 @@ class ToDoActivity : AppCompatActivity(), InterfaceToDo.ViewImpl, HackListener {
     }
 
     override fun notifyTaskChanged(position: Int) {
-        //adapterToDo?.notifyDataSetChanged()
         adapterToDo?.notifyItemChanged(position)
     }
 
