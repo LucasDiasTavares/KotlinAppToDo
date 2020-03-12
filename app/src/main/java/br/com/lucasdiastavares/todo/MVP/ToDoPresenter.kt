@@ -10,10 +10,10 @@ class ToDoPresenter(private val context: Context,
     private var taskList : ArrayList<ToDoObject> = ArrayList()
 
     override fun save(givenTitle: String) {
-        val obj = ToDoObject(title = givenTitle, completed = 0)
+        val obj = ToDoObject(title = givenTitle, completed = false)
         model.createTask(obj)
         taskList.add(showLastTaskAdded())
-        _view.notifyAddTask(taskList.lastIndex)
+        _view.notifyTaskAdded(taskList.lastIndex)
     }
 
     override fun showTaskList(): ArrayList<ToDoObject> {
@@ -33,7 +33,14 @@ class ToDoPresenter(private val context: Context,
         val id = taskList[posicaoAdapter].id
         model.deleteTask(id!!)
         taskList.removeAt(posicaoAdapter)
-        _view.notifyRemoveTask(posicaoAdapter)
+        _view.notifyTaskRemoved(posicaoAdapter)
+    }
+
+    override fun strikeUnstrike(posicaoAdapter: Int) {
+        taskList[posicaoAdapter].completed = !taskList[posicaoAdapter].completed!!
+        val id = taskList[posicaoAdapter].id
+        model.updateCompleted(id!!, taskList[posicaoAdapter].completed!!)
+        _view.notifyTaskChanged(posicaoAdapter)
     }
 
 }

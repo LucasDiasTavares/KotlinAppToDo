@@ -2,10 +2,12 @@ package br.com.lucasdiastavares.todo.MVP
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.lucasdiastavares.todo.R
+import br.com.lucasdiastavares.todo.R.id.txt_task
 import br.com.lucasdiastavares.todo.Utils.HackListener
 import br.com.lucasdiastavares.todo.data.ToDoObject
 import kotlinx.android.synthetic.main.row_task.view.*
@@ -27,7 +29,11 @@ class ToDoAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: MyViewHolder, position: Int) {
-        viewHolder.itemView.txt_task.text = list[position].title
+        if(list[position].completed == false){
+            viewHolder.itemView.txt_task.text = list[position].title
+        }
+        else viewHolder.itemView.txt_task.text = Html.fromHtml("<strike>${list[position].title.toString()}</strike>")
+
     }
 
     inner class MyViewHolder(itemViewHolder: View) : RecyclerView.ViewHolder(itemViewHolder), View.OnClickListener {
@@ -36,7 +42,7 @@ class ToDoAdapter(
             itemViewHolder.btn_delete.setOnClickListener(this)
         }
         override fun onClick(view: View) {
-            hackListener.onClickHack(view, adapterPosition)
+            hackListener.onClickHack(itemView,view, adapterPosition)
         }
     }
 

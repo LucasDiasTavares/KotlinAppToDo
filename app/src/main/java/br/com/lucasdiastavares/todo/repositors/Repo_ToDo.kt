@@ -58,7 +58,7 @@ class Repo_ToDo(private val context: Context) {
         val at = ToDoObject()
         at.id = cursor.getInt(cursor.getColumnIndex("id"))
         at.title = cursor.getString(cursor.getColumnIndex("title"))
-        at.completed = cursor.getInt(cursor.getColumnIndex("completed"))
+        at.completed = (cursor.getInt(cursor.getColumnIndex("completed")) == 1 )
         return at
     }
 
@@ -71,6 +71,14 @@ class Repo_ToDo(private val context: Context) {
         return getAllTasks().last()
     }
 
+    fun updateCompleted(id: Int, completed: Boolean) {
+        val values = ContentValues()
+
+        values.put("completed", if(completed) 1 else 0)
+
+        db_conection?.getConexaoDatabase()?.update("tasks", values, "id = $id", null)
+        db_conection?.getConexaoDatabase()?.close()
+    }
 
 
 }

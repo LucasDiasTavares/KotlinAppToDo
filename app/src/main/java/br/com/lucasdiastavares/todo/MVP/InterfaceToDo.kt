@@ -9,11 +9,13 @@ interface InterfaceToDo {
         fun deleteTask(id: Int)
         fun getTaskList(): ArrayList<ToDoObject>
         fun getLastTask(): ToDoObject
+        fun updateCompleted(id: Int, completed: Boolean)
     }
 
     interface ViewImpl{
-        fun notifyAddTask(position : Int)
-        fun notifyRemoveTask(position : Int)
+        fun notifyTaskAdded(position : Int)
+        fun notifyTaskRemoved(position : Int)
+        fun notifyTaskChanged(position: Int)
     }
 
     interface PresenterImpl {
@@ -22,6 +24,7 @@ interface InterfaceToDo {
         fun showLastTaskAdded() :ToDoObject
         fun delete(id: Int)
         fun removeTask(posicaoAdapter: Int)
+        fun strikeUnstrike(posicaoAdapter: Int)
     }
 
 }

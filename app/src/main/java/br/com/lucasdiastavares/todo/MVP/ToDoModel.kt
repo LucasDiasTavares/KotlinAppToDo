@@ -22,4 +22,8 @@ class ToDoModel(private val context: Context): InterfaceToDo.ModelImpl {
         return Repo_ToDo(context).getLastTask()
     }
 
+    override fun updateCompleted(id: Int, completed: Boolean) {
+        Repo_ToDo(context).updateCompleted(id, completed)
+    }
+
 }
