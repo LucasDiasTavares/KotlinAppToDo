@@ -9,6 +9,7 @@ import android.widget.Toast
 import br.com.lucasdiastavares.todo.R
 import br.com.lucasdiastavares.todo.Utils.HackListener
 import kotlinx.android.synthetic.main.activity_to_do.*
+import kotlinx.android.synthetic.main.row_task.*
 import kotlinx.android.synthetic.main.toolbar.*
 
 class ToDoActivity : AppCompatActivity(), InterfaceToDo.ViewImpl, HackListener {
@@ -25,10 +26,11 @@ class ToDoActivity : AppCompatActivity(), InterfaceToDo.ViewImpl, HackListener {
     }
 
     fun initcomponents(){
-        toolbar.title = "To Do"
+        toolbar.title = "Tavares Tarefas"
         btn_main_salvar.setOnClickListener {
             val edtTitle = main_edt.text.toString()
             presenterToDo?.save(edtTitle)
+            main_edt.text?.clear()
         }
 
         recyclerView.layoutManager = LinearLayoutManager(
@@ -51,6 +53,9 @@ class ToDoActivity : AppCompatActivity(), InterfaceToDo.ViewImpl, HackListener {
             R.id.btn_delete -> {
                 presenterToDo?.removeTask(position)
                 Toast.makeText(this, "Deletado", Toast.LENGTH_SHORT).show()
+            }
+            R.id.btn_edit -> {
+                Toast.makeText(this, "Info", Toast.LENGTH_SHORT).show()
             }
         }
     }
